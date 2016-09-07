@@ -70,7 +70,7 @@ s.clear();
 console.log(s.peek()); //如果一个空栈调用peek方法，结果为undefined
 console.log('length:%d',s.length());
 
-console.log('-------------------分隔符------------------------')
+console.log('-------------------分隔符------------------------');
 
 //Stack实例运用____判断给定字符串是否是回文
 

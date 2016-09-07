@@ -12,7 +12,7 @@
   * * 属性
   * * * head          头节点
   * * 方法  
-  * * * find          遍历链表
+  * * * find          遍历链表寻找节点
   * * * insert        插入新节点
   * * * remove        从链表中删除一个节点
   * * * display       展示链表内的元素
@@ -35,13 +35,11 @@ function LList() {
   this.findPrevious = findPrevious;
 }
 
-//遍历链表
+//遍历链表寻找节点
 function find(item) {
   var currNode = this.head;
-  console.log(currNode);
   //进行与操作的顺序不能改变
   while(currNode != null && currNode.element != item) {
-    console.log(1);
     currNode = currNode.next;
   }
   return currNode;
@@ -88,7 +86,7 @@ function remove(item) {
     console.log('该节点不存在');
   }
 }
-//test
+//测试链表类
 var s = new LList();
 s.insert('CaiShiRan','head');
 s.insert('CaiLaoShi','CaiShiRan');

@@ -194,20 +194,29 @@ console.log(thirdText);
 function notLastIteration(node) {
   var strText = '';
   var stack = [];
-  stack.push(node);
+  // 0 1 2
+  //若node的mark = 0，修改当前node的mark为1，左子树入栈
+  //若node的mark = 1，修改当前node的mark为2，右子树入栈
+  //若node的mark = 2，访问当前node结点的值
+  stack.push([node,0]);
 
-  while(stack.length) {
-    while(node.leftChild) {
-      node = node.leftChild;
-      stack.push(node);
-    };
-    var tempNode = stack.pop();
-    if(tempNode.rightChild) {
-      stack.push(tempNode.rightChild);
-      node = tempNode.rightChild;
-    } else {
-      strText += tempNode.text;
-      
+  while (stack.length) {
+    var a = stack.pop();
+    var node = a[0];
+    switch (a[1]) {
+      case 0:
+          stack.push([node, 1]);  // 修改mark域
+          if (node.leftChild) stack.push([node.leftChild, 0]);  // 访问左子树
+          break;
+      case 1:
+          stack.push([node, 2]);
+          if (node.rightChild) stack.push([node.rightChild, 0]);
+          break;
+      case 2:
+          strText += node.text;
+          break;
+      default:
+          break;
     }
   }
   console.log(strText);

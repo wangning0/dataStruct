@@ -12,7 +12,7 @@ function Node(data) {
 //利用原型prototype在Array类中添加自定义方法createHufuTree(构建哈夫曼树)
 Array.prototype.createHufuTree = function() {
   var nodes = [];
-
+  console.log(this);
   //初始化结点
   for( var i = 0; i < this.length; i++ ) {
     //思考:此处的this指针指向哪里？代表什么?
@@ -44,3 +44,38 @@ var dataArr = [1,3,7,8,5,12,10];
 //var dataArr = [7,5,4,2];
 var res = dataArr.createHufuTree();
 console.log(res.data);
+//下面有彩蛋哦
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * 答案
+ * * this指向的是Array类实例化出来的数组对象，所以this.length表示调用了数组的length方法
+ * * 不改变原数组的常用操作是filter slice map concat every some forEach
+ * 
+*/
+
+

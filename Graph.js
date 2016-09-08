@@ -30,7 +30,6 @@ function Graph(v) {
   //边的信息比较复杂，采用的是邻接矩阵表示图边的方法，可以查一下邻接矩阵,下面是用初始化邻接矩阵
   for(var i = 0; i< this.vertices; ++i) {
     this.adj[i] = [];
-    this.adj[i].push('');
   }
   //产生了一个二维数组adj[[],[],[],[],[]];
   this.addEdge = addEdge;
@@ -134,4 +133,63 @@ ng.addEdge(0,1);
 ng.addEdge(1,4);
 ng.addEdge(0,2);
 ng.addEdge(2,3);
-ng.bfs(0);
+//ng.bfs(0);
+
+
+//拓扑排序topSort
+function newGraph(v) {
+  this.vertices = v;
+  this.edges = 0;
+  this.adj = [];
+  //边的信息比较复杂，采用的是邻接矩阵表示图边的方法，可以查一下邻接矩阵,下面是用初始化邻接矩阵
+  for(var i = 0; i< this.vertices; ++i) {
+    this.adj[i] = [];
+  }
+  //产生了一个二维数组adj[[],[],[],[],[]];
+  this.addEdge = addHasSignEdge;
+  this.showGraph = showGraph;
+  this.topSort = topSort;
+  this.topSortHelper = topSortHelper;
+}
+//有向图的边的增加
+function addHasSignEdge(v,w) {
+  this.adj[v].push(w);
+  this.edges++;
+}
+//topSort方法
+function topSort() {
+  var visited = [];
+  var stack = [];
+  for( var i = 0; i < this.vertices; i++ ) {
+    visited[i] = false;
+  }
+  for( var i = 0; i < this.vertices; i++ ) {
+    if(visited[i] == false) {
+      this.topSortHelper(i, visited, stack);
+    }
+  }
+  var al = stack.pop();
+  while(al != null) {
+    console.log(al);
+    al = stack.pop();
+  }
+}
+
+function topSortHelper(v, visited, stack) {
+  visited[v] = true;
+  for(var w in this.adj[v]) {
+    if(!visited[this.adj[v][w]]) {
+      this.topSortHelper(this.adj[v][w],visited,stack);
+    }
+  }
+  stack.push(v);
+}
+
+//top排序测试
+var topSortTest = new newGraph(6);
+topSortTest.addEdge(0,2);
+topSortTest.addEdge(1,2);
+topSortTest.addEdge(2,3);
+topSortTest.addEdge(3,4);
+topSortTest.addEdge(3,5);
+topSortTest.topSort();

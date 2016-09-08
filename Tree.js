@@ -4,7 +4,6 @@
   2.深度为k的二叉树至多有2^k-1个节点
   3.在任意一颗二叉树中，若叶子节点的个数为n0，度为1的节点数n1,度为2的节点数为n2,则n0=n2+1
   * 数据结构之树Tree
-  * 数据只能在栈顶添加或删除，操作很快，并且容易实现
   * 栈的抽象数据类型定义
   * * 属性
   * * top       记录栈顶位置，初识时对应数组的起始位置0。有元素被压入栈后，该变量的值将随之变化
@@ -25,7 +24,7 @@ function Node() {
   this.rightChild = null;
 }
 //利用递归来构建二叉树
-var charcters = ['A','B','C','D','E','F','G','H','I'/*,'J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'*/];
+var charcters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 function buildTree(node, i) {
   var leftIndex = 2 * i + 1;
   var rightIndex = 2 * i + 2;
@@ -46,26 +45,25 @@ var node = new Node();
 node.text = charcters[0];
 buildTree(node,0);
 //利用非递归方式构建二叉树
-// var root;
-// function createBinaryTree() {
-//   var len = charcters.length;
-//   var index = 0; //索引从0开始
-//   var nodes = []; //创建一个临时数组，用于存放二叉树节点
-//   for(var i = 0; i<charcters.length; i++) {
-//     var node = new Node();
-//     node.text = charcters[i];
-//     nodes.push(node);
-//   }
-//   while(index < len) {
-//     var leftIndex = 2 * index + 1;
-//     var rightIndex = 2 * index + 2;
-//     nodes[index].leftChildren = nodes[leftIndex];
-//     nodes[index].rightChidren = nodes[rightIndex];
-//     index++;
-//   }
-//   root = nodes[0];
-// }
-
+var root;
+function createBinaryTree() {
+  var len = charcters.length;
+  var index = 0; //索引从0开始
+  var nodes = []; //创建一个临时数组，用于存放二叉树节点
+  for(var i = 0; i<charcters.length; i++) {
+    var node = new Node();
+    node.text = charcters[i];
+    nodes.push(node);
+  }
+  while(index < len) {
+    var leftIndex = 2 * index + 1;
+    var rightIndex = 2 * index + 2;
+    nodes[index].leftChildren = nodes[leftIndex];
+    nodes[index].rightChidren = nodes[rightIndex];
+    index++;
+  }
+  root = nodes[0];
+}
 // createBinaryTree();
 /*
  * * 树的三种遍历方式

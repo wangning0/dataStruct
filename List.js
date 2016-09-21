@@ -65,7 +65,7 @@ function remove(element) {
     //arrObject.splice(index,hommany,item1,...itemX);
     //index 规定添加／删除的项目数量
     //howmany要删除的项目数量，如果设置为0，则不会删除项目
-    this.dataStroe.splice(fundAt,1);
+    this.dataStore.splice(fundAt,1);
     --this.listSize;
     return true;
   }
@@ -99,7 +99,7 @@ function clear() {
 }
 // 判断给定值是否在列表中
 function contains(element) {
-  for(var i = 0; i < this.dataStroe.length; ++i) {
+  for(var i = 0; i < this.dataStore.length; ++i) {
     if(this.dataStore[i] == element) {
       return true;
     }
